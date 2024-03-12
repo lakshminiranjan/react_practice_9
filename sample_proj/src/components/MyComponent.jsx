@@ -1,35 +1,52 @@
+//onChange = event handling used primarily with form elements ex.<input><textframe>,select,radio,Triggers the function every time the value of the input changes
 import React,{useState} from 'react'
-
-
-
-//React hook = special function that allow function components to use React feautures without writing class components(React (v16.8))(Use State,USe Effect etc.,)
-
-//useState() = A React hook that allows the creation of stateful variable and a settervfunction to update its value in the virtualDOm[name,setName]
 
 function MyComponent() {
 
-    const [name, setName ] = useState("Guest");
-    const [age, setAge ] = useState(0);
-    const [isEmployed, setIsEmployed] =useState(false);
-    const updateName = () => {
-        setName("Nizy");
-    }
-    const incrementAge =() =>{
-        setAge(age+1);
-    }
-    const toggleEmployedStatus = () => {
-        setIsEmployed(!isEmployed);
-    }
+  const [name ,setName] = useState("Guest");
+  const [quantity ,setQuantity] = useState(1);
+  const [comment ,setComment] = useState("");
+  const [payment ,setPayment] = useState("");
+  const [shipping,setShipping] = useState("");
+
+  function handlenameChange(event){
+    setName(event.target.value);
+  }
+
+  function handlequantityChange(event){
+    setQuantity(event.target.value);
+  }
+
+  function handlecommentChange(event){
+    setComment(event.target.value);
+  }
+  function handlepaymentChange(event){
+    setPayment(event.target.value);
+  }
+  function handleshippingsChange(event){
+    setShipping(event.target.value);
+  }
   return (
     <div>
-        <p>Name:{name}</p>
-        <button onClick={updateName}>Set Name</button>
+      <input value={name} onChange={handlenameChange} />
+      <p>Name: {name}</p>
+      <input value={quantity} onChange={handlequantityChange} type='number'/>
+      <p>Quantity: {quantity}</p>
+      <textarea value={comment} onChange={handlecommentChange} placeholder='Enter delivery instructions'/>
+      <p>Comment : {comment}</p>
+      <select value={payment} onChange={handlepaymentChange}>
+        <option value="">Select an option</option>
+        <option value="Visa">Visa</option>
+        <option value="MasterCard" className="">MasterCard</option>
+        <option value="GiftCard">GiftCard</option>
+      </select>
+      <p>Payment: {payment}</p>
 
-        <p>Age:{age}</p>
-        <button onClick={incrementAge}>Increment Age</button>
-
-        <p>Is Employed:{isEmployed ? 'Yes' : 'No'}</p>
-        <button onClick={toggleEmployedStatus}>Toggle Status</button>
+      <label> <br /><input type="radio" value="Pick Up" checked={shipping === "Pick Up"} onChange={handleshippingsChange} />Pick Up</label>
+      <label >
+        <input type="radio" value="Delivery" checked={shipping === "Delivery"} onChange={handleshippingsChange} />
+        Delivery</label>
+        <p>Shipping :{shipping}</p>
     </div>
   )
 }

@@ -1,6 +1,5 @@
+import MyComponent from "./components/MyComponent"
 
-import Counter from './components/Counter'
-import MyComponent from './components/MyComponent'
 
 function App() {
 
@@ -8,7 +7,6 @@ function App() {
   return (
     <>
     <MyComponent/>
-    <Counter/>
     </>
 
   )
